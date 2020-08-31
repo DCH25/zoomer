@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = jumpForce;
         }
 
-        playerVelocity.y += Physics.gravity.y * gravityForce;
+        playerVelocity.y += Physics.gravity.y * gravityForce * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
 }
