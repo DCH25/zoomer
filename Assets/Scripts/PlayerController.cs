@@ -22,8 +22,11 @@ public class PlayerController : MonoBehaviour
     {
         playerVelocity = new Vector3(Input.GetAxis("Horizontal") * playerSpeed, playerVelocity.y, Input.GetAxis("Vertical") * playerSpeed);
 
-        if (Input.GetButtonDown("Jump") && controller.isGrounded) {
-            playerVelocity.y = jumpForce;
+        if (controller.isGrounded) {
+            playerVelocity.y = 0f;
+            if (Input.GetButtonDown("Jump") && controller.isGrounded) {
+                playerVelocity.y = jumpForce;
+            }
         }
 
         playerVelocity.y += Physics.gravity.y * gravityForce * Time.deltaTime;
