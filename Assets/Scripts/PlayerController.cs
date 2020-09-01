@@ -21,13 +21,13 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         float y = playerVelocity.y;
-        playerVelocity = playerSpeed * (transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal"));
-        playerVelocity = playerVelocity.normalized * playerSpeed;
+        playerVelocity = transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal");
+        playerVelocity = playerSpeed * playerVelocity.normalized;
         playerVelocity.y = y;
 
         if (controller.isGrounded) {
             playerVelocity.y = 0f;
-            if (Input.GetButtonDown("Jump")) {
+            if (Input.GetButton("Jump")) {
                 playerVelocity.y = jumpForce;
             }
         }
