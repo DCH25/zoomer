@@ -7,6 +7,7 @@ public class PlayerControllerBeta : MonoBehaviour
     float horizontal, vertical;
     float rotation_base;
     public float speed = 10.0f;
+    public GameObject cameraBase;
     Vector3 move_direction;
 
     void Update()
@@ -29,7 +30,7 @@ public class PlayerControllerBeta : MonoBehaviour
 
     void PlayerLook()
     {
-        rotation_base = GameObject.Find("CameraBase").transform.eulerAngles.y;
+        rotation_base = cameraBase.transform.eulerAngles.y;
         transform.rotation = Quaternion.Euler(0, rotation_base, 0);    
     }
 }
