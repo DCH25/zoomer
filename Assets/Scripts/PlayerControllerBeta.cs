@@ -9,7 +9,7 @@ public class PlayerControllerBeta : MonoBehaviour
     public float jumpForce = 30.0f;
     public float gravityForce = 10.0f;
     float rotation_base;
-        CharacterController controller;
+    CharacterController controller;
     private Vector3 playerVelocity;
 
     // Start is called before the first frame update
