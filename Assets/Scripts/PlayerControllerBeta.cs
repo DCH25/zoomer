@@ -6,13 +6,34 @@ public class PlayerControllerBeta : MonoBehaviour
 {
     float horizontal, vertical;
     float rotation_base;
+    bool isGrounded;
+    Vector3 move_direction;
+    Vector3 jump;
+    Rigidbody rb;
+    public float jumpForce = 2.0f;
     public float speed = 10.0f;
     public GameObject cameraBase;
-    Vector3 move_direction;
+
+    void Start() 
+    {
+        rb = GetComponent<Rigidbody>();
+        isGrounded = true;
+        jump = new Vector3(0.0f, 2.0f, 0.0f);        
+    }
+
+    void OnCollisionStay() 
+    {
+        isGrounded = true;    
+    }
 
     void Update()
     {
         MovePlayer();
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+        }
     }
     
     void LateUpdate() 
