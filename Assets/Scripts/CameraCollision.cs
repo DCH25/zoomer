@@ -8,7 +8,7 @@ public class CameraCollision : MonoBehaviour
     float max_distance = 10.0f;
     float smooth = 10.0f;
     Vector3 dolly_direction;
-    public float distance;
+    float distance;
 
     void Awake()
     {

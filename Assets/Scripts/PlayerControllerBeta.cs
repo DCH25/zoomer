@@ -4,49 +4,42 @@ using UnityEngine;
 
 public class PlayerControllerBeta : MonoBehaviour
 {
-    float horizontal, vertical;
-    float rotation_base;
-    bool isGrounded;
-    Vector3 move_direction;
-    Vector3 jump;
-    Rigidbody rb;
-    public float jumpForce = 2.0f;
-    public float speed = 10.0f;
     public GameObject cameraBase;
+    public float playerSpeed = 10.0f;
+    public float jumpForce = 30.0f;
+    public float gravityForce = 10.0f;
+    float rotation_base;
+        CharacterController controller;
+    private Vector3 playerVelocity;
 
-    void Start() 
+    // Start is called before the first frame update
+    void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        isGrounded = true;
-        jump = new Vector3(0.0f, 2.0f, 0.0f);        
+        controller = gameObject.AddComponent<CharacterController>();
     }
 
-    void OnCollisionStay() 
-    {
-        isGrounded = true;    
-    }
-
+    // Update is called once per frame
     void Update()
     {
-        MovePlayer();
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
+        float y = playerVelocity.y;
+        playerVelocity = transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal");
+        playerVelocity = playerSpeed * playerVelocity.normalized;
+        playerVelocity.y = y;
+
+        if (controller.isGrounded) {
+            playerVelocity.y = 0f;
+            if (Input.GetButton("Jump")) {
+                playerVelocity.y = jumpForce;
+            }
         }
+
+        playerVelocity.y += Physics.gravity.y * gravityForce * Time.deltaTime;
+        controller.Move(playerVelocity * Time.deltaTime);
     }
-    
+
     void LateUpdate() 
     {
-        PlayerLook();
-    }
-    
-    void MovePlayer()
-    {
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-        Vector3 move = new Vector3(horizontal, 0, vertical) * speed * Time.deltaTime;
-        transform.Translate(move, Space.Self);
+        PlayerLook();    
     }
 
     void PlayerLook()
