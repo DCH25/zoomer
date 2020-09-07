@@ -5,9 +5,9 @@ using UnityEngine;
 public class CameraControllerBeta : MonoBehaviour
 {   
     public GameObject camera_target;
-    float camera_move_speed = 120.0f;
-    float clamp_angle = 80.0f;
-    float input_sensitivity = 150.0f;
+    public float camera_move_speed = 80.0f;
+    public float clamp_angle = 80.0f;
+    public float input_sensitivity = 150.0f;
     float rotation_x = 0.0f;
     float rotation_y = 0.0f;  
     float mouse_x;
