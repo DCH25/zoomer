@@ -44,7 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef5864ea718f224da55f07371448b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera_target: {fileID: 0}
+  camera_target: {fileID: 1937132530579801344, guid: 917d062facbe3174da97872f1feb23e4, type: 3}
+  camera_move_speed: 100
+  clamp_angle: 80
+  input_sensitivity: 150
 --- !u!1 &3794280235141909356
 GameObject:
   m_ObjectHideFlags: 0

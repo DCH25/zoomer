@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930148be339380748bb990b77ac665e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraBase: {fileID: 0}
+  cameraBase: {fileID: 3794280233766255061, guid: feea503dca7997242b9c80815bae1ba4, type: 3}
   playerSpeed: 10
   jumpForce: 30
   gravityForce: 10
